@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ams.search.dao.mapper.WordHistoryMapper">
+
+    <resultMap id="BaseResultMap" type="com.ams.search.model.WordHistory">
+            <result property="words" column="words" jdbcType="VARCHAR"/>
+            <result property="createdBy" column="createdBy" jdbcType="VARCHAR"/>
+            <result property="createdTime" column="createdTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+<!--    <sql id="Base_Column_List">-->
+<!--        WORDS,CREATED_BY,CREATED_TIME-->
+<!--    </sql>-->
+    <sql id="Base_Column_List">
+        words,createdBy,createdTime
+    </sql>
+    <select id="get_lately_top" resultType="com.ams.search.model.WordHistory">
+        SELECT words,createdBy,createdTime FROM `word_history` w WHERE w.createdBy=#{user} ORDER BY w.createdTime DESC LIMIT #{top}
+    </select>
+</mapper>

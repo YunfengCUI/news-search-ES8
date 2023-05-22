@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ams.search.dao.mapper.DocsMapper">
+
+    <resultMap id="BaseResultMap" type="com.ams.search.model.Docs">
+            <id property="uuid" column="UUID" jdbcType="VARCHAR"/>
+            <result property="source" column="SOURCE" jdbcType="VARCHAR"/>
+            <result property="title" column="TITLE" jdbcType="VARCHAR"/>
+            <result property="content" column="CONTENT" jdbcType="VARCHAR"/>
+            <result property="publishTime" column="PUBLISH_TIME" jdbcType="TIMESTAMP"/>
+            <result property="type" column="TYPE" jdbcType="VARCHAR"/>
+            <result property="createdBy" column="CREATED_BY" jdbcType="VARCHAR"/>
+            <result property="createdTime" column="CREATED_TIME" jdbcType="TIMESTAMP"/>
+            <result property="updatedBy" column="UPDATED_BY" jdbcType="VARCHAR"/>
+            <result property="updatedTime" column="UPDATED_TIME" jdbcType="TIMESTAMP"/>
+        <collection property="newsComments" ofType="com.ams.search.model.NewsComment">
+            <id property="commentUuid" column="comment_uuid" jdbcType="VARCHAR"/>
+            <result property="objUuid" column="obj_uuid" jdbcType="VARCHAR"/>
+            <result property="content" column="content" jdbcType="VARCHAR"/>
+            <result property="topLevel" column="top_level" jdbcType="INTEGER"/>
+            <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
+            <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>
+            <result property="updatedBy" column="updated_by" jdbcType="VARCHAR"/>
+            <result property="updatedTime" column="updated_time" jdbcType="TIMESTAMP"/>
+        </collection>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        UUID,SOURCE,TITLE,
+        CONTENT,PUBLISH_TIME,TYPE,
+        CREATED_BY,CREATED_TIME,UPDATED_BY,
+        UPDATED_TIME
+    </sql>
+    <select id="getUserComment" resultType="java.util.Map" >
+        SELECT
+               d.title AS title,
+               n.content AS  content,
+               n.created_time AS createdTime,
+               n.created_by AS createdBy,
+               n.comment_uuid AS commentUuid
+        FROM doc d INNER JOIN news_comment n ON  d.uuid = n.obj_uuid
+            ${ew.customSqlSegment}
+    </select>
+
+</mapper>

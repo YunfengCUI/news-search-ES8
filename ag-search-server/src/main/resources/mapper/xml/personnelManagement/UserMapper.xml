@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ams.search.dao.personnelManagement.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ams.search.model.personnelManagement.User">
+        <id column="USER_ID" property="userId" />
+        <result column="USER_MENU_REL_ID" property="userMenuRelId" />
+        <result column="USER_NUMBER" property="userNumber" />
+        <result column="USER_NAME" property="userName" />
+        <result column="USER_LOGIN_NAME" property="userLoginName" />
+        <result column="USER_PASSWORD" property="userPassword" />
+        <result column="USER_PHONE" property="userPhone" />
+        <result column="USER_SEX" property="userSex" />
+        <result column="CREATE_USER_NAME" property="createUserName" />
+        <result column="CREATE_USER_ID" property="createUserId" />
+        <result column="UPDATE_USER_NAME" property="updateUserName" />
+        <result column="UPDATE_USER_ID" property="updateUserId" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="UPDATE_TIME" property="updateTime" />
+        <result column="IS_DELETE" property="isDelete" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        USER_ID, USER_MENU_REL_ID, USER_NUMBER, USER_NAME, USER_LOGIN_NAME, USER_PASSWORD, USER_PHONE, USER_SEX, CREATE_USER_NAME, CREATE_USER_ID, UPDATE_USER_NAME, UPDATE_USER_ID, CREATE_TIME, UPDATE_TIME, IS_DELETE
+    </sql>
+
+
+    <select id="queryUserByIdNotIsDelete" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM GG_USER
+        where USER_ID = #{userId,jdbcType=VARCHAR}
+    </select>
+
+    <update id="updateUserByIdNotIsDelete" parameterType="com.ams.search.model.personnelManagement.User">
+        update XM_PROJECT
+        <set>
+            <if test="userMenuRelId != null">
+                USER_MENU_REL_ID = #{userMenuRelId,jdbcType=VARCHAR},
+            </if>
+            <if test="userNumber != null">
+                USER_NUMBER = #{userNumber,jdbcType=VARCHAR},
+            </if>
+            <if test="userName != null">
+                USER_NAME = #{userName,jdbcType=VARCHAR},
+            </if>
+            <if test="userLoginName != null">
+                USER_LOGIN_NAME = #{userLoginName,jdbcType=VARCHAR},
+            </if>
+            <if test="userPassword != null">
+                USER_PASSWORD = #{userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="userPhone != null">
+                USER_PHONE = #{userPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="userSex != null">
+                USER_SEX = #{userSex,jdbcType=DECIMAL},
+            </if>
+            <if test="createUserName != null">
+                CREATE_USER_NAME = #{createUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="createUserId != null">
+                CREATE_USER_ID = #{createUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="updateUserName != null">
+                UPDATE_USER_NAME = #{updateUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="updateUserId != null">
+                UPDATE_USER_ID = #{updateUserId,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isDelete != null">
+                IS_DELETE = #{isDelete,jdbcType=DECIMAL},
+            </if>
+        </set>
+        where USER_ID = #{userId,jdbcType=VARCHAR}
+    </update>
+</mapper>

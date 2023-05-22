@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ams.search.dao.personnelManagement.RoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ams.search.model.personnelManagement.Role">
+        <id column="ROLE_ID" property="roleId" />
+        <result column="ROLE_NUMBER" property="roleNumber" />
+        <result column="ROLE_NAME" property="roleName" />
+        <result column="CREATE_USER_NAME" property="createUserName" />
+        <result column="CREATE_USER_ID" property="createUserId" />
+        <result column="UPDATE_USER_NAME" property="updateUserName" />
+        <result column="UPDATE_USER_ID" property="updateUserId" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="UPDATE_TIME" property="updateTime" />
+        <result column="IS_DELETE" property="isDelete" />
+        <result column="ROLE_DES" property="roleDes" />
+        <result column="ROLE_SORT" property="roleSort" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ROLE_ID, ROLE_NUMBER, ROLE_NAME, CREATE_USER_NAME, CREATE_USER_ID, UPDATE_USER_NAME, UPDATE_USER_ID, CREATE_TIME, UPDATE_TIME, IS_DELETE,ROLE_DES
+    </sql>
+
+</mapper>

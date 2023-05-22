@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ams.search.dao.personnelManagement.MenuMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ams.search.model.personnelManagement.Menu">
+        <id column="MENU_ID" property="menuId" />
+        <result column="USER_MENU_REL_ID" property="userMenuRelId" />
+        <result column="MENU_NAME" property="menuName" />
+        <result column="MENU_URL" property="menuUrl" />
+        <result column="MENU_PARENT_ID" property="menuParentId" />
+        <result column="MENU_SORT" property="menuSort" />
+        <result column="CREATE_USER_NAME" property="createUserName" />
+        <result column="CREATE_USER_ID" property="createUserId" />
+        <result column="UPDATE_USER_NAME" property="updateUserName" />
+        <result column="UPDATE_USER_ID" property="updateUserId" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="UPDATE_TIME" property="updateTime" />
+        <result column="IS_DELETE" property="isDelete" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        MENU_ID, USER_MENU_REL_ID, MENU_NAME, MENU_URL, MENU_PARENT_ID, MENU_SORT, CREATE_USER_NAME, CREATE_USER_ID, UPDATE_USER_NAME, UPDATE_USER_ID, CREATE_TIME, UPDATE_TIME, IS_DELETE
+    </sql>
+
+    <update id="batchDelete">
+        update GG_MENU
+        set IS_DELETE = 1
+        where MENU_ID in
+        <foreach collection="menuList" item="item" open="(" separator="," close=")">
+            #{item.menuId}
+        </foreach>
+    </update>
+
+    <select id="getCurrentUserMenuList" parameterType="java.lang.String"
+            resultType="com.ams.search.model.personnelManagement.Menu">
+        select * from GG_MENU join GG_USER_MENU_REL on
+        GG_MENU.MENU_ID = GG_USER_MENU_REL.MENU_ID where
+        USER_ID = #{userId,jdbcType=VARCHAR} AND
+        IS_DELETE = 0 order by MENU_SORT
+    </select>
+</mapper>

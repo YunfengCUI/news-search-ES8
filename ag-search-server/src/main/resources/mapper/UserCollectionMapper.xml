@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ams.search.dao.mapper.UserCollectionMapper">
+
+    <resultMap id="BaseResultMap" type="com.ams.search.model.UserCollection">
+            <id property="collectionId" column="collection_id" jdbcType="INTEGER"/>
+            <result property="arrricleId" column="arrricle_id" jdbcType="VARCHAR"/>
+            <result property="userUid" column="user_uid" jdbcType="VARCHAR"/>
+            <result property="arricleTitle" column="arricle_title" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        collection_id,arrricle_id,user_uid,
+        arricle_title
+    </sql>
+</mapper>

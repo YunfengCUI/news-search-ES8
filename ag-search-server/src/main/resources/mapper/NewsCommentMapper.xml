@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ams.search.dao.mapper.NewsCommentMapper">
+
+    <resultMap id="BaseResultMap" type="com.ams.search.model.NewsComment">
+            <id property="commentUuid" column="comment_uuid" jdbcType="VARCHAR"/>
+            <result property="objUuid" column="obj_uuid" jdbcType="VARCHAR"/>
+            <result property="content" column="content" jdbcType="VARCHAR"/>
+            <result property="topLevel" column="top_level" jdbcType="INTEGER"/>
+            <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
+            <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>
+            <result property="updatedBy" column="updated_by" jdbcType="VARCHAR"/>
+            <result property="updatedTime" column="updated_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        comment_uuid,obj_uuid,content,
+        top_level,created_by,created_time,
+        updated_by,updated_time
+    </sql>
+    <select id="getTopComment" resultType="com.ams.search.model.NewsComment">
+        SELECT comment_uuid,obj_uuid,content,
+               top_level,created_by,created_time,
+               updated_by,updated_time FROM `news_comment` n WHERE n.obj_uuid=#{obj_uuid} ORDER BY n.updated_by DESC LIMIT #{start},#{end}
+    </select>
+    <select id="getTop" resultType="com.ams.search.model.NewsComment">
+        SELECT comment_uuid commentUuid,obj_uuid objUuid,content content,
+               top_level topLevel,created_by createdBy,created_time createdTime,
+               updated_by updatedBy,updated_time updatedTime  FROM `news_comment`
+            ${ew.customSqlSegment}
+    </select>
+</mapper>

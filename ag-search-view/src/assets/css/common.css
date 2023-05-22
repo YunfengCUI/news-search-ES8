@@ -1,0 +1,15 @@
+.html {
+    color: #333;
+}
+body {
+    /*background: #f8f9f9 url(../img/bgbody3.jpeg) no-repeat 0 0;*/
+    /*background: #f8f9f9 url(../img/bgbody3.jpeg);*/
+    /*background: #f8f9f9 url(../img/bgbody2.jpg);*/
+    background-size: 100% 50%;
+    min-height: 100vh;
+    /*opacity: 0.6;*/
+}
+.logo-icon {
+    float: left;
+    margin-top: 30px;
+}

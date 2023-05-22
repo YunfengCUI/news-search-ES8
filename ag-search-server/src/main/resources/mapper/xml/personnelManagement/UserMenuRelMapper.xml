@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ams.search.dao.personnelManagement.UserMenuRelMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ams.search.model.personnelManagement.UserMenuRel">
+        <id column="USER_MENU_REL_ID" property="userMenuRelId" />
+        <result column="USER_ID" property="userId" />
+        <result column="MENU_ID" property="menuId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        USER_MENU_REL_ID, USER_ID, MENU_ID
+    </sql>
+
+</mapper>

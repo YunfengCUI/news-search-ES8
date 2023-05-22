@@ -1,0 +1,27 @@
+server:
+  port: 1095
+#打印dbug
+logging:
+  level:
+    root: info
+spring:
+  datasource:
+#    type: com.mysql.cj.jdbc.MysqlDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://139.159.246.94:1056/test99?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false
+    url: jdbc:mysql://124.70.83.73:3306/news_database?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false
+#    url: jdbc:mysql://localhost:3306/news_database?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: cyfroot
+#    username: root
+    password: CYFpwd@34567
+springfox:
+  documentation:
+    swagger-ui:
+      enabled: true
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: false
+
+
